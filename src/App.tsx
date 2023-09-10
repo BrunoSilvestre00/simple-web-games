@@ -1,16 +1,9 @@
 import React from "react";
-import { DeveloperName, GameTitle, RootContainer, TitleContainer } from "./components/index.styled";
-import Game from "./components/canva";
+import ApplicationRoutes from "./routes/application-routes";
 
 const App: React.FC = () => {
   return (
-    <RootContainer>
-      <TitleContainer>
-        <GameTitle>Jogo da Velha</GameTitle>
-        <DeveloperName>desenvolvido por Bruno Silvestre</DeveloperName>
-      </TitleContainer>
-      <Game />
-    </RootContainer>
+    <ApplicationRoutes />
   );
 };
 

@@ -1,8 +1,8 @@
 import React, { useCallback, useState } from "react";
-import { CellState } from "../constants";
 import { BoardContainer, Cell, GameContainer, PlayerLabel, RestartButton } from "./index.styled";
 import CrossPlayer from "../players/crossPlayer";
 import CirclePlayer from "../players/circlePlayer";
+import { CellState } from "../../constants";
 
 const GAME_SIZE = 3;
 

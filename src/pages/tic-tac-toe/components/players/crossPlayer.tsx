@@ -3,7 +3,7 @@ import React from "react"
 const CrossPlayer: React.FC = () => {
   return (
     <svg fill="current" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-      width="90" height="90" viewBox="0 0 503.021 503.021">
+      width="90" height="90" viewBox="0 0 505 505">
     <g>
       <g>
         <path d="M491.613,75.643l-64.235-64.235c-15.202-15.202-39.854-15.202-55.056,0L251.507,132.222L130.686,11.407

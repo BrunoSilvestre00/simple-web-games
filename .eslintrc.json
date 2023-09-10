@@ -39,7 +39,7 @@
     "react/prop-types": "off",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
-    "no-shadow": ["error", {"builtinGlobals": false, "hoist": "functions", "allow": []}]
+    "no-shadow": "off"
   },
   "settings": {
     "react": {

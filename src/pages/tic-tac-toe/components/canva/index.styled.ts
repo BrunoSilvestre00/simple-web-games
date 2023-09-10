@@ -1,5 +1,5 @@
 import styled, { keyframes, css } from 'styled-components';
-import { CellState, theme } from '../constants';
+import { CellState } from '../../constants';
 
 export const GameContainer = styled.div`
   display: flex;
@@ -15,27 +15,27 @@ export const BoardContainer = styled.div`
   grid-gap: 1rem;
   padding: 1rem;
   border-radius: 1rem;
-  background-color: ${theme.colors_1.secondary};
+  background-color: #3f8fa5;
 `;
 
 const cellColorAnimation = keyframes`
   0%, 40%, 80% {
-    background-color: ${theme.colors_1.primary};
+    background-color: #61dafb;
   }
 
   20%, 60%, 100% {
-    background-color: ${theme.colors_1.winner};
+    background-color: #61FBCF;
   }
 `;
 
-const CELL_SIZE = '8rem';
+const CELL_SIZE = '12vh';
 
 export const Cell = styled.button<{winnerCell: boolean}>`
   width: ${CELL_SIZE};
   height: ${CELL_SIZE};
   background-color: ${({ winnerCell }) => winnerCell
-    ? theme.colors_1.winner
-    : theme.colors_1.primary
+    ? '#61FBCF'
+    : '#61dafb'
   };
 
   border-radius: 1rem;
@@ -43,7 +43,7 @@ export const Cell = styled.button<{winnerCell: boolean}>`
   display: flex;
   justify-content: center;
   align-items: center;
-  color: ${theme.colors_1.background};
+  color: #282c34;
 
   ${({ winnerCell }) => winnerCell && css`
     animation: ${cellColorAnimation} 2s ease-in-out;
@@ -53,14 +53,18 @@ export const Cell = styled.button<{winnerCell: boolean}>`
     cursor: pointer;
     opacity: 0.8;
   }
+
+  svg {
+    width: 100%;
+  }
 `;
 
 export const PlayerLabel = styled.span<{ winner: number}>`
   color: ${({ winner }) => winner == CellState.CROSS
-    ? theme.colors_1.player_1
+    ? '#618dfb'
     : winner == CellState.CIRCLE
-    ? theme.colors_1.player_2
-    : theme.colors_1.draw
+    ? '#fb8261'
+    : '#dafb61'
   };
   font-size: 1.25rem;
   font-weight: bold;
@@ -69,8 +73,8 @@ export const PlayerLabel = styled.span<{ winner: number}>`
 export const RestartButton = styled.button`
   border: 0;
   border-radius: 0.5rem;
-  background-color: ${theme.colors_1.primary};
-  color: ${theme.colors_1.background};
+  background-color: #61dafb;
+  color: #282c34;
   font-size: 1.25rem;
   font-weight: bold;
   padding: 0.5rem 1rem;
