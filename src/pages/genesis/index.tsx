@@ -3,13 +3,13 @@ import Game from "./components/canva";
 import { GameTitle, TitleContainer } from "./components/index.styled";
 
 
-const TicTacToe: React.FC = () => {
+const Genesis: React.FC = () => {
     return (<>
         <TitleContainer>
-            <GameTitle>Jogo da Velha</GameTitle>
+            <GameTitle>Genius</GameTitle>
         </TitleContainer>
         <Game />
-    </>);
+    </>)
 };
 
-export default TicTacToe;
+export default Genesis;
