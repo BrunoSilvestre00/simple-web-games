@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { Board, GameButton1, GameButton2, GameButton3, GameButton4, GameContainer, GameStateLabel } from './index.styled';
 
 const wait = (milliseconds: number) => {
@@ -7,11 +7,11 @@ const wait = (milliseconds: number) => {
 
 const Game: React.FC = () => {
 
-    const [realSerie, setRealSerie] = React.useState<number[]>([]);
-    const [playerIndex, setPlayerIndex] = React.useState<number>(0);
-    const [gamingState, setGamingState] = React.useState<boolean>(true);
-    const [loseState, setLoseState] = React.useState<boolean>(false);
-    const [score, setScore] = React.useState<number>(0);
+    const [realSerie, setRealSerie] = useState<number[]>([]);
+    const [playerIndex, setPlayerIndex] = useState<number>(0);
+    const [gamingState, setGamingState] = useState<boolean>(true);
+    const [loseState, setLoseState] = useState<boolean>(false);
+    const [score, setScore] = useState<number>(0);
 
     const gamingLoading = useCallback(async () => {
         const random = Math.floor(Math.random() * 4) + 1;
