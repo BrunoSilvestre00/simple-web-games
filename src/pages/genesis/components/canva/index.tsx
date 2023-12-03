@@ -54,7 +54,7 @@ const Game: React.FC = () => {
         } else {
             setLoseState(true);
         }
-    }, [realSerie, playerIndex, score]);
+    }, [realSerie, playerIndex, score, play]);
 
     const label = useMemo(() => {
         if(loseState) {
@@ -66,7 +66,7 @@ const Game: React.FC = () => {
 
     useEffect(() => {
         play();
-    }, []);
+    }, [play]);
     
     return (
         <GameContainer>
