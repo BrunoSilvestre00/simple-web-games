@@ -26,6 +26,7 @@ export const LetterButton = styled.button`
     color: #282c34;
     font-size: 1.5rem;
     font-weight: bold;
+    transition: opacity 0.2s ease-in-out;
 
     &:hover {
         cursor: pointer;

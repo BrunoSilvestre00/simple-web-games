@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
-import { GameContainer, GameInfoContainer, State, Tip, WordContainer } from "./index.styled";
+import { GameContainer, GameInfoContainer, RestartButton, State, Tip, WordContainer } from "./index.styled";
 import Keyboard from "../keyboard";
 import Word from "../word";
 import { GameState, getRandTipWord } from "../constants";
@@ -11,6 +11,10 @@ const Game: React.FC = () => {
     const [selectedLetters, setSelectedLetters] = useState<string[]>([]);
     const [gameState, setGameState] = useState<GameState>('playing');
 
+    const playing = useMemo((): boolean => {
+        return gameState === 'playing';
+    }, [gameState]);
+
     const [selectedTip, selectedWord] = useMemo(() => {
         const obj = getRandTipWord(); 
         return [obj.tip, obj.word];
@@ -18,17 +22,22 @@ const Game: React.FC = () => {
 
     const showWord = useMemo(() => {
         return selectedWord.split('').map((letter) => {
-            return selectedLetters.includes(letter) ? letter : ' ';
+            const include = selectedLetters.includes(letter);
+            return [include, (include || !playing) ? letter : ' '];
         });
-    }, [selectedWord, selectedLetters]);
+    }, [selectedWord, selectedLetters, playing]);
 
     const handleLetterClick = useCallback((letter: string) => {
-        if (gameState !== 'playing') return;
+        if (!playing) return;
         if (!selectedWord.includes(letter)){
             setErrors(errors + 1);
         }
         setSelectedLetters([...selectedLetters, letter]);
-    }, [selectedLetters, selectedWord, errors, gameState]);
+    }, [selectedLetters, selectedWord, errors, playing]);
+
+    const handleRestartGame = useCallback(() => {
+        location.reload();
+    }, []);
 
     useEffect(() => {
         if (errors >= 6) {
@@ -51,17 +60,25 @@ const Game: React.FC = () => {
     return (
         <GameContainer>
             <GameInfoContainer>
-                {gameState !== 'playing' && (<State>{stateLabel}</State>)}
-                <Tip>Dica: {selectedTip}</Tip>
+                {gameState !== 'playing' && (
+                    <State state={gameState}>{stateLabel}</State>
+                )}
+                <Tip>Dica: {selectedTip} ({selectedWord.length})</Tip>
             </GameInfoContainer>
             <WordContainer>
                 <Man errors={errors} />
                 <Word word={showWord}/>
             </WordContainer>
-            <Keyboard 
-                selectedLetters={selectedLetters} 
-                onClick={handleLetterClick}
-            />
+            {playing ? (
+                <Keyboard 
+                    selectedLetters={selectedLetters} 
+                    onClick={handleLetterClick}
+                />
+            ) : (
+                <RestartButton onClick={handleRestartGame}>
+                    Restart
+                </RestartButton>
+            )}
         </GameContainer>
     );
 };

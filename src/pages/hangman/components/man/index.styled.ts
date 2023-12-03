@@ -7,6 +7,7 @@ export const BodyPart = styled.div<{ show: boolean }>`
     opacity: ${({ show }) => show ? 1 : 0};
     position: absolute;
     transition: opacity 0.3s ease-in-out;
+    border-radius: 0.5rem;
 `;
 
 export const ManContainer = styled.div`
@@ -48,7 +49,7 @@ export const ManContainer = styled.div`
 
     ${BodyPart}.body {
         top: 6rem;
-        left: 0;
+        left: 0.125rem;
         right: 0;
         margin: 0 auto;
         width: ${MAN_THICKNESS};

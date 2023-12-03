@@ -10,9 +10,11 @@ export const WordContainer = styled.div`
 
 const WORD_LETTER_SIZE = '3rem';
 
-export const WordLetter = styled.span`
+export const WordLetter = styled.span<{ include: boolean }>`
     position: relative;
-    color: #61dafb;
+    display: flex;
+    justify-content: center;
+    color: ${({ include }) => include ? '#61dafb' : '#fa0'};
     font-size: 2rem;
     font-weight: bold;
     width: ${WORD_LETTER_SIZE};
