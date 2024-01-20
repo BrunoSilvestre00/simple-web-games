@@ -8,7 +8,7 @@
   "homepage": "https://brunosilvestre00.github.io/simple-web-games/home",
   "license": "MIT",
   "scripts": {
-    "predeploy": "npm run build",
+    "predeploy": "yarn run build",
     "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "develop": "webpack-cli serve --mode=development --env development --open --hot",
