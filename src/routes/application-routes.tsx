@@ -12,13 +12,13 @@ const ApplicationRoutes: React.FC = () => {
     return (
         <BrowserRouter history={historyProvider} basename="/simple-web-games">
             <Switch>
-                <RouteComponent path="/home" component={Home} />
+                <RouteComponent path="/" component={Home} />
                 <RouteComponent path="/tic-tac-toe" component={TicTacToe} />
                 <RouteComponent path="/genesis" component={Genesis} />
                 <RouteComponent path="/hangman" component={Hangman} />
-                <RouteComponent path="*" exact>
-                    <Redirect to="/home" exact />
-                </RouteComponent>
+                {/* <RouteComponent path="*" exact>
+                    <Redirect to="/" exact />
+                </RouteComponent> */}
             </Switch>
         </BrowserRouter>
     )
