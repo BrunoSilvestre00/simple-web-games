@@ -5,12 +5,14 @@ import TicTacToe from "src/pages/tic-tac-toe";
 import RouteComponent from "./route-component";
 import Genesis from "src/pages/genesis";
 import Hangman from "src/pages/hangman";
+import Home from "src/pages/home";
 
 
 const ApplicationRoutes: React.FC = () => {
     return (
         <BrowserRouter history={historyProvider} basename="/simple-web-games">
             <Switch>
+                <RouteComponent path="/home" component={Home} />
                 <RouteComponent path="/tic-tac-toe" component={TicTacToe} />
                 <RouteComponent path="/genesis" component={Genesis} />
                 <RouteComponent path="/hangman" component={Hangman} />
