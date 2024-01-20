@@ -5,7 +5,7 @@
   "version": "1.0.0",
   "main": "src/index.tsx",
   "repository": "https://github.com/BrunoSilvestre00/simple-web-games.git",
-  "homepage": "https://brunosilvestre00.github.io/simple-web-games",
+  "homepage": "https://brunosilvestre00.github.io/simple-web-games/home",
   "license": "MIT",
   "scripts": {
     "predeploy": "npm run build",
