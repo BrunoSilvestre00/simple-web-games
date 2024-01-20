@@ -9,7 +9,7 @@ import Hangman from "src/pages/hangman";
 
 const ApplicationRoutes: React.FC = () => {
     return (
-        <BrowserRouter history={historyProvider}>
+        <BrowserRouter history={historyProvider} basename="/simple-web-games">
             <Switch>
                 <RouteComponent path="/tic-tac-toe" component={TicTacToe} />
                 <RouteComponent path="/genesis" component={Genesis} />
