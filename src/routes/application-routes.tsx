@@ -10,7 +10,7 @@ import Home from "src/pages/home";
 
 const ApplicationRoutes: React.FC = () => {
     return (
-        <BrowserRouter history={historyProvider} basename="/simple-web-games">
+        <BrowserRouter history={historyProvider}>
             <Switch>
                 <RouteComponent path="/" component={Home} exact />
                 <RouteComponent path="/tic-tac-toe" component={TicTacToe} />
