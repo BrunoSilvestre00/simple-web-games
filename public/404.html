@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Redirecionando — Simple Web Games</title>
+        <script>
+            const basePath = "<%= htmlWebpackPlugin.options.basePath %>";
+            const route = location.pathname.startsWith(basePath)
+                ? location.pathname.slice(basePath.length).replace(/^\/+|\/+$/g, "")
+                : "";
+            location.replace(basePath + "#/" + route + location.search);
+        </script>
+    </head>
+    <body>
+        <a href="<%= htmlWebpackPlugin.options.basePath %>">Voltar ao início</a>
+    </body>
+</html>

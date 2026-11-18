@@ -1,89 +1,81 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { Board, GameButton1, GameButton2, GameButton3, GameButton4, GameContainer, GameStateLabel } from './index.styled';
+import {useEffect, useState} from "react";
+import {
+    Board,
+    GameButton1,
+    GameButton2,
+    GameButton3,
+    GameButton4,
+    GameContainer,
+    GameStateLabel,
+    RestartButton
+} from "./index.styled";
 
-const wait = (milliseconds: number) => {
-    return new Promise((resolve) => setTimeout(resolve, milliseconds));
-}
+const randomButton = () => Math.floor(Math.random() * 4) + 1;
 
-const Game: React.FC = () => {
-
-    const [realSerie, setRealSerie] = useState<number[]>([]);
-    const [playerIndex, setPlayerIndex] = useState<number>(0);
-    const [gamingState, setGamingState] = useState<boolean>(true);
-    const [loseState, setLoseState] = useState<boolean>(false);
-    const [score, setScore] = useState<number>(0);
-
-    const gamingLoading = useCallback(async () => {
-        const random = Math.floor(Math.random() * 4) + 1;
-        const series = [...realSerie, random];
-
-        for(let index = 0; index < series.length; index++) {
-            const button = document.getElementById(`button-${series[index]}`);
-            button?.classList.add('active');
-            setTimeout(() => {
-                button?.classList.remove('active');
-            }, 500);
-            await wait(1000);
-        }
-
-        setRealSerie(series);
-        setGamingState(false);
-    }, [realSerie]);
-
-    const play = useCallback(async () => {
-        if(loseState) return;
-        await wait(1000);
-        setGamingState(true);
-        await gamingLoading();
-    }, [gamingLoading, loseState]);
-
-    const handlePlayerClick = useCallback((index) => {
-        const button = document.getElementById(`button-${index}`);
-        button?.classList.add('active');
-        setTimeout(() => {
-            button?.classList.remove('active');
-        }, 500);
-
-        if(index === realSerie[playerIndex]) {
-            setPlayerIndex(playerIndex + 1);
-            if (playerIndex + 1 === realSerie.length) {
-                setPlayerIndex(0);
-                setScore(score + 1);
-                play();
-            }
-        } else {
-            setLoseState(true);
-        }
-    }, [realSerie, playerIndex, score, play]);
-
-    const label = useMemo(() => {
-        if(loseState) {
-            return 'Você perdeu!';
-        }
-
-        return gamingState ? 'Atenção...' : 'Sua vez!';
-    }, [loseState, gamingState]);
+export default function Game() {
+    const [series, setSeries] = useState(() => [randomButton()]);
+    const [playerIndex, setPlayerIndex] = useState(0);
+    const [playingSequence, setPlayingSequence] = useState(true);
+    const [lost, setLost] = useState(false);
+    const [activeButton, setActiveButton] = useState<number | null>(null);
+    const [score, setScore] = useState(0);
 
     useEffect(() => {
-        play();
-    }, [play]);
-    
+        const timers: ReturnType<typeof setTimeout>[] = [];
+        series.forEach((button, index) => {
+            const delay = (index + 1) * 1000;
+            timers.push(setTimeout(() => setActiveButton(button), delay));
+            timers.push(setTimeout(() => setActiveButton(null), delay + 500));
+        });
+        timers.push(setTimeout(() => setPlayingSequence(false), (series.length + 1) * 1000));
+        return () => timers.forEach(clearTimeout);
+    }, [series]);
+
+    function handlePlayerClick(button: number) {
+        if (playingSequence || lost) return;
+        if (button !== series[playerIndex]) {
+            setLost(true);
+            return;
+        }
+        if (playerIndex + 1 === series.length) {
+            setPlayingSequence(true);
+            setPlayerIndex(0);
+            setScore((previous) => previous + 1);
+            setSeries((previous) => [...previous, randomButton()]);
+        } else {
+            setPlayerIndex((previous) => previous + 1);
+        }
+    }
+
+    function restart() {
+        setPlayingSequence(true);
+        setLost(false);
+        setPlayerIndex(0);
+        setScore(0);
+        setActiveButton(null);
+        setSeries([randomButton()]);
+    }
+
+    const buttons = [GameButton1, GameButton2, GameButton3, GameButton4];
+
     return (
         <GameContainer>
-            <GameStateLabel>
-                {label}
+            <GameStateLabel aria-live="polite">
+                {lost ? "Você perdeu!" : playingSequence ? "Atenção..." : "Sua vez!"}
             </GameStateLabel>
             <Board>
-                <GameButton1 id="button-1" disabled={gamingState || loseState} onClick={() => handlePlayerClick(1)} />
-                <GameButton2 id="button-2" disabled={gamingState || loseState} onClick={() => handlePlayerClick(2)}/>
-                <GameButton3 id="button-3" disabled={gamingState || loseState} onClick={() => handlePlayerClick(3)}/>
-                <GameButton4 id="button-4" disabled={gamingState || loseState} onClick={() => handlePlayerClick(4)}/>
+                {buttons.map((Button, index) => (
+                    <Button
+                        key={index}
+                        aria-label={`Cor ${index + 1}`}
+                        className={activeButton === index + 1 ? "active" : undefined}
+                        disabled={playingSequence || lost}
+                        onClick={() => handlePlayerClick(index + 1)}
+                    />
+                ))}
             </Board>
-            <GameStateLabel>
-                Pontuação: {score}
-            </GameStateLabel>
+            <GameStateLabel>Pontuação: {score}</GameStateLabel>
+            {lost && <RestartButton onClick={restart}>Recomeçar</RestartButton>}
         </GameContainer>
-    )
-};
-
-export default Game;
+    );
+}

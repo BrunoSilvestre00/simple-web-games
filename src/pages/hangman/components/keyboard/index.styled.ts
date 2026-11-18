@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const KeyboadContainer = styled.div`
     display: flex;
@@ -15,7 +15,7 @@ export const LettersContainer = styled.div`
     gap: 0.5rem;
 `;
 
-const LETTER_BUTTON_SIZE = '3rem';
+const LETTER_BUTTON_SIZE = "3rem";
 
 export const LetterButton = styled.button`
     width: ${LETTER_BUTTON_SIZE};

@@ -1,9 +1,9 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-export const PLAYER_1 = '#ff2d05';
-export const PLAYER_2 = '#008aff';
-export const PLAYER_3 = '#dfff1c';
-export const PLAYER_4 = '#5dee2f';
+export const PLAYER_1 = "#ff2d05";
+export const PLAYER_2 = "#008aff";
+export const PLAYER_3 = "#dfff1c";
+export const PLAYER_4 = "#5dee2f";
 
 export const GameContainer = styled.div`
     display: flex;
@@ -12,7 +12,7 @@ export const GameContainer = styled.div`
     gap: 1rem;
 `;
 
-const BUTTON_SIZE = '15vw';
+const BUTTON_SIZE = "clamp(7rem, 15vw, 12rem)";
 
 const GameButton = styled.button`
     width: ${BUTTON_SIZE};
@@ -76,5 +76,13 @@ export const Board = styled.div`
 export const GameStateLabel = styled.span`
     font-size: 1.25rem;
     font-weight: 700;
-    color: #ddd
+    color: #ddd;
+`;
+
+export const RestartButton = styled.button`
+    padding: 0.5rem 1rem;
+    background-color: #61dafb;
+    border: 0;
+    border-radius: 0.5rem;
+    cursor: pointer;
 `;

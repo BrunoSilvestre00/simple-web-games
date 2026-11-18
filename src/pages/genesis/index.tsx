@@ -1,15 +1,14 @@
 import React from "react";
 import Game from "./components/canva";
-import { GameTitle, TitleContainer } from "./components/index.styled";
-
+import {GameTitle} from "../../components/game-title";
 
 const Genesis: React.FC = () => {
-    return (<>
-        <TitleContainer>
+    return (
+        <>
             <GameTitle>Genius</GameTitle>
-        </TitleContainer>
-        <Game />
-    </>)
+            <Game />
+        </>
+    );
 };
 
 export default Genesis;

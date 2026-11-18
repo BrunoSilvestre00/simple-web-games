@@ -1,23 +1,21 @@
-import React from 'react';
+import {Link} from "react-router-dom";
 
-
-const Home: React.FC = () => {
-    return (<>
-        <h1>Home</h1>
-
-        <p>
-            <a href="/simple-web-games/tic-tac-toe">Tic Tac Toe</a>
-        </p>
-
-        <p>
-            <a href="/simple-web-games/genesis">Genesis</a>
-        </p>
-
-        <p>
-            <a href="/simple-web-games/hangman">Hangman</a>
-        </p>
-
-    </>);
-};
-
-export default Home;
+export default function Home() {
+    return (
+        <>
+            <h1>Simple Web Games</h1>
+            <p>
+                <Link to="/tic-tac-toe">Jogo da Velha</Link>
+            </p>
+            <p>
+                <Link to="/genesis">Genius</Link>
+            </p>
+            <p>
+                <Link to="/hangman">Jogo da Forca</Link>
+            </p>
+            <p>
+                <Link to="/minesweeper">Campo Minado (em desenvolvimento)</Link>
+            </p>
+        </>
+    );
+}

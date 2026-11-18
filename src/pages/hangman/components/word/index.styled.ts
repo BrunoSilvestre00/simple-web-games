@@ -1,5 +1,4 @@
-import styled from 'styled-components';
-
+import styled from "styled-components";
 
 export const WordContainer = styled.div`
     display: flex;
@@ -8,20 +7,20 @@ export const WordContainer = styled.div`
     gap: 0.5rem;
 `;
 
-const WORD_LETTER_SIZE = '3rem';
+const WORD_LETTER_SIZE = "3rem";
 
-export const WordLetter = styled.span<{ include: boolean }>`
+export const WordLetter = styled.span<{$include: boolean}>`
     position: relative;
     display: flex;
     justify-content: center;
-    color: ${({ include }) => include ? '#61dafb' : '#fa0'};
+    color: ${({$include}) => ($include ? "#61dafb" : "#fa0")};
     font-size: 2rem;
     font-weight: bold;
     width: ${WORD_LETTER_SIZE};
     height: ${WORD_LETTER_SIZE};
 
     &::after {
-        content: '';
+        content: "";
         position: absolute;
         bottom: 0rem;
         left: 0;

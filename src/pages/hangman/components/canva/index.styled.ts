@@ -1,32 +1,32 @@
-import styled from 'styled-components';
-import { GameState } from '../constants';
+import styled from "styled-components";
+import {GameState} from "../constants";
 
 export const GameContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2.5rem;
 `;
 
 export const GameInfoContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
 `;
 
-export const State = styled.span<{ state: GameState }>`
-  color: #fff;
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: ${({ state }) => {
-    switch (state) {
-      case 'win':
-        return '#00ff00';
-      case 'lose':
-        return '#ff0000';
-    }
-  }};
+export const State = styled.span<{$state: GameState}>`
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: ${({$state}) => {
+        switch ($state) {
+            case "win":
+                return "#00ff00";
+            case "lose":
+                return "#ff0000";
+        }
+    }};
 `;
 
 export const Tip = styled.span`
@@ -39,27 +39,27 @@ export const Tip = styled.span`
 `;
 
 export const WordContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  gap: 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 4rem;
 `;
 
 export const RestartButton = styled.button`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 2px solid #61dafb;
-  border-radius: 1rem;
-  font-size: 1.5rem;
-  font-weight: bold;
-  padding: 0.75rem 1.5rem;
-  background-color: transparent;
-  color: #61dafb;
-  margin-top: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #61dafb;
+    border-radius: 1rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 0.75rem 1.5rem;
+    background-color: transparent;
+    color: #61dafb;
+    margin-top: 2rem;
 
-  &:hover {
-    background-color: #61dafb33;
-    cursor: pointer;
-  }
+    &:hover {
+        background-color: #61dafb33;
+        cursor: pointer;
+    }
 `;

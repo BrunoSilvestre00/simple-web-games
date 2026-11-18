@@ -3,4 +3,5 @@ build/
 dist/
 .cache/
 .idea/
-package-lock.json
+*.tsbuildinfo
+*.log

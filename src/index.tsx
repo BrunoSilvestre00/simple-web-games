@@ -1,5 +1,5 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import {createRoot} from "react-dom/client";
 
 import App from "./App";
 
@@ -9,4 +9,8 @@ const APP = (
     </React.StrictMode>
 );
 
-ReactDOM.render(APP, document.getElementById("root"));
+const root = document.getElementById("root");
+
+if (!root) throw new Error("Elemento raiz não encontrado.");
+
+createRoot(root).render(APP);

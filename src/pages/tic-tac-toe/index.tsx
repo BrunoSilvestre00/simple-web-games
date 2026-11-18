@@ -1,15 +1,14 @@
 import React from "react";
 import Game from "./components/canva";
-import { GameTitle, TitleContainer } from "./components/index.styled";
-
+import {GameTitle} from "../../components/game-title";
 
 const TicTacToe: React.FC = () => {
-    return (<>
-        <TitleContainer>
+    return (
+        <>
             <GameTitle>Jogo da Velha</GameTitle>
-        </TitleContainer>
-        <Game />
-    </>);
+            <Game />
+        </>
+    );
 };
 
 export default TicTacToe;

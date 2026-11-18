@@ -1,10 +1,10 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-const MAN_COLOR = '#61dafb';
-const MAN_THICKNESS = '0.2rem';
+const MAN_COLOR = "#61dafb";
+const MAN_THICKNESS = "0.2rem";
 
-export const BodyPart = styled.div<{ show: boolean }>`
-    opacity: ${({ show }) => show ? 1 : 0};
+export const BodyPart = styled.div<{$show: boolean}>`
+    opacity: ${({$show}) => ($show ? 1 : 0)};
     position: absolute;
     transition: opacity 0.3s ease-in-out;
     border-radius: 0.5rem;
@@ -17,7 +17,7 @@ export const ManContainer = styled.div`
     border-left: ${MAN_THICKNESS} solid ${MAN_COLOR};
 
     &::after {
-        content: '';
+        content: "";
         position: absolute;
         top: 0;
         left: 0;
@@ -27,7 +27,7 @@ export const ManContainer = styled.div`
     }
 
     &::before {
-        content: '';
+        content: "";
         position: absolute;
         top: 0;
         left: 5rem;

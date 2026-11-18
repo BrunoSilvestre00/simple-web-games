@@ -1,15 +1,14 @@
 import React from "react";
-import { GameTitle, TitleContainer } from "./components/index.styled";
+import {GameTitle} from "../../components/game-title";
 import Game from "./components/canva";
 
-
 const Hangman: React.FC = () => {
-    return (<>
-        <TitleContainer>
+    return (
+        <>
             <GameTitle>Jogo da Forca</GameTitle>
-        </TitleContainer>
-        <Game />
-    </>);
+            <Game />
+        </>
+    );
 };
 
 export default Hangman;
